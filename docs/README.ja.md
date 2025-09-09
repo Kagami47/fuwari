@@ -80,6 +80,6 @@ draft: false
 | `pnpm dev`                          | `localhost:4321` で開発用ローカルサーバーを起動            |
 | `pnpm build`                        | `./dist/` にビルド内容を出力                         |
 | `pnpm preview`                      | デプロイ前の内容をローカルでプレビュー                         |
-| `pnpm new-post <filename>`          | 新しい投稿を作成                                    |
+| `pnpm new-post <postname>`          | 新しい投稿を作成                                    |
 | `pnpm astro ...`                    | `astro add`, `astro check` の様なコマンドを実行する際に使用 |
 | `pnpm astro --help`                 | Astro CLIのヘルプを表示                            |

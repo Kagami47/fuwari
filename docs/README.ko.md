@@ -69,7 +69,7 @@ Astro의 기본 [GitHub Flavored Markdown](https://github.github.com/gfm/) 지�
 | `pnpm check`                        | 코드에서 오류를 확인합니다.         |
 | `pnpm format`                        | Biome을 사용하여 코드를 포멧합니다.         |
 | `pnpm preview`                      | 배포하기 전에 로컬에서 빌드 미리보기     |
-| `pnpm new-post <filename>`          | 새 게시물 작성                                |
+| `pnpm new-post <postname>`          | 새 게시물 작성                                |
 | `pnpm astro ...`                    | `astro add`, `astro check`와 같은 CLI 명령어 실행 |
 | `pnpm astro --help`                 | Astro CLI를 사용하여 도움 받기                     |
 
