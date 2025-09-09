@@ -47,6 +47,16 @@ export const siteConfig: SiteConfig = {
 		//   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
 		// }
 	],
+	// 图片占位符配置
+	imagePlaceholder: {
+		enable: true, // 启用图片占位符功能
+		src: "/imagePlaceholder/imagePlaceholder.webp", // 默认占位图片路径（相对于public目录）
+		localOnly: false, // 不仅限于本地图片，也适用于远程图片
+		postImages: {
+			enable: true, // 为文章图片启用占位符
+			src: "/imagePlaceholder/imagePlaceholder.webp", // 文章图片专用占位符，可使用不同的图片
+		},
+	},
 };
 
 export const navBarConfig: NavBarConfig = {

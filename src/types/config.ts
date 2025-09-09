@@ -46,6 +46,16 @@ export type SiteConfig = {
 	};
 
 	favicon: Favicon[];
+	// 图片占位符配置
+	imagePlaceholder: {
+		enable: boolean; // 是否启用图片占位符功能
+		src: string; // 占位图片的路径或URL
+		localOnly: boolean; // 是否仅对本地图片使用占位符
+		postImages: {
+			enable: boolean; // 是否为文章图片启用占位符
+			src: string; // 文章图片专用占位符路径，未设置则使用全局占位符
+		};
+	};
 };
 
 export type Favicon = {

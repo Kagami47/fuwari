@@ -8,22 +8,50 @@ interface Props {
 	alt?: string;
 	position?: string;
 	basePath?: string;
+	isPostImage?: boolean; // 是否为文章图片
 }
 
 import { Image } from "astro:assets";
 import { siteConfig } from "../../config";
 import { url } from "../../utils/url-utils";
 
-const { id, src, alt, position = "center", basePath = "/" } = Astro.props;
+const {
+	id,
+	src,
+	alt,
+	position = "center",
+	basePath = "/",
+	isPostImage = false,
+} = Astro.props;
 const className = Astro.props.class;
 
+// 判断是否为本地图片（位于 src/ 目录，可通过 import.meta.glob 引入）
+// 注意：以 "/" 开头的路径会被视为 public 目录资源，而不是 src/ 下的本地图片
 const isLocal = !(
-	src.startsWith("/") ||
+    src.startsWith("/") ||
 	src.startsWith("http") ||
-	src.startsWith("https") ||
+    src.startsWith("https") ||
 	src.startsWith("data:")
 );
+// 判断是否为 public 目录下的图片（以 "/" 开头）
 const isPublic = src.startsWith("/");
+
+// 检查是否启用了图片占位符功能
+const usePlaceholder =
+	siteConfig.imagePlaceholder?.enable &&
+	(!siteConfig.imagePlaceholder?.localOnly || isLocal) &&
+	// 如果是文章图片，检查文章图片的占位符设置
+	(!isPostImage || siteConfig.imagePlaceholder?.postImages?.enable);
+
+// 获取占位图片的URL
+const getPlaceholderUrl = () => {
+	// 优先使用文章图片专用占位符
+	if (isPostImage && siteConfig.imagePlaceholder?.postImages?.src) {
+		return siteConfig.imagePlaceholder.postImages.src;
+	}
+	// 否则使用全局占位符
+	return siteConfig.imagePlaceholder?.src || "";
+};
 
 // TODO temporary workaround for images dynamic import
 // https://github.com/withastro/astro/issues/3373
@@ -56,8 +84,57 @@ const imageStyle = `object-position: ${position}`;
     
     <!-- 图片加载完成后自动淡入并隐藏进度条 -->
     <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>
-    {isLocal && img && <Image src={img} alt={alt || ""} class={`${imageClass} image-content opacity-0 transition-opacity duration-500`} style={imageStyle} onload="this.style.opacity='1'; this.parentElement.querySelector('.loading-bar').style.opacity='0';"/>}
-    {!isLocal && <img src={isPublic ? url(src) : src} alt={alt || ""} class={`${imageClass} image-content opacity-0 transition-opacity duration-500`} style={imageStyle} onload="this.style.opacity='1'; this.parentElement.querySelector('.loading-bar').style.opacity='0';"/>}
+    
+    <!-- 本地图片 -->
+    {isLocal && img && (
+        <Image 
+            src={img} 
+            alt={alt || ""} 
+            class={`${imageClass} image-content opacity-0 transition-opacity duration-500`} 
+            style={imageStyle} 
+            onload="this.style.opacity='1'; this.parentElement.querySelector('.loading-bar').style.opacity='0';" 
+            onerror={`
+                if (this.getAttribute('data-placeholder-used') !== 'true' && ${usePlaceholder}) {
+                    this.setAttribute('data-placeholder-used', 'true');
+                    this.src = '${getPlaceholderUrl()}';
+                    this.classList.add('image-placeholder');
+                } else {
+                    this.parentElement.querySelector('.loading-bar').style.opacity='1';
+                    this.style.opacity='0';
+                }
+            `}
+        />
+    )}
+    
+    <!-- 远程图片 -->
+    {!isLocal && (
+        <img 
+            src={isPublic ? url(src) : src} 
+            alt={alt || ""} 
+            class={`${imageClass} image-content opacity-0 transition-opacity duration-500`} 
+            style={imageStyle} 
+            onload="this.style.opacity='1'; this.parentElement.querySelector('.loading-bar').style.opacity='0';" 
+            onerror={`
+                if (this.getAttribute('data-placeholder-used') !== 'true' && ${usePlaceholder}) {
+                    this.setAttribute('data-placeholder-used', 'true');
+                    this.src = '${getPlaceholderUrl()}';
+                    this.classList.add('image-placeholder');
+                } else {
+                    this.parentElement.querySelector('.loading-bar').style.opacity='1';
+                    this.style.opacity='0';
+                }
+            `}
+        />
+    )}
+    
+    <!-- 占位图加载失败时显示的错误提示 -->
+    {usePlaceholder && (
+        <div class="image-error absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </div>
+    )}
 </div>
 
 <style>
