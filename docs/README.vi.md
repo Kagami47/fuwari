@@ -71,7 +71,7 @@ Tất cả các lệnh được chạy từ thư mục gốc của dự án, t�
 | `pnpm preview`             | Xem trước bản web cục bộ của bạn, trước khi triển khai        |
 | `pnpm check`               | Chạy kiểm tra lỗi trong mã của bạn                 |
 | `pnpm format`              | Định dạng mã của bạn bằng Biome                       |
-| `pnpm new-post <filename>` | Tạo một bài viết mới                               |
+| `pnpm new-post <postname>` | Tạo một bài viết mới                               |
 | `pnpm astro ...`           | Chạy các lệnh CLI như `astro add`, `astro check`    |
 | `pnpm astro --help`        | Nhận trợ giúp sử dụng Astro CLI                       |
 

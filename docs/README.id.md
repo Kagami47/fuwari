@@ -89,7 +89,7 @@ Semua perintah dijalankan dari root proyek, via terminal:
 | `pnpm preview`               | Pratinjau hasil build sebelum deploy                      |
 | `pnpm check`                 | Cek error atau masalah di kode                            |
 | `pnpm format`                | Format kode dengan Biome                                  |
-| `pnpm new-post <nama-file>`  | Membuat postingan baru                                    |
+| `pnpm new-post <postname>`  | Membuat postingan baru                                    |
 | `pnpm astro ...`             | Jalankan perintah CLI seperti `astro add`, `astro check`  |
 | `pnpm astro --help`          | Bantuan menggunakan Astro CLI                             |
 
