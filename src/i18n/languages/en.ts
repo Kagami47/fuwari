@@ -17,12 +17,12 @@ export const en: Translation = {
 	[Key.uncategorized]: "Uncategorized",
 	[Key.noTags]: "No Tags",
 
-	[Key.wordCount]: "word",
-	[Key.wordsCount]: "words",
-	[Key.minuteCount]: "minute",
-	[Key.minutesCount]: "minutes",
-	[Key.postCount]: "post",
-	[Key.postsCount]: "posts",
+	[Key.wordCount]: "Word",
+	[Key.wordsCount]: "Words",
+	[Key.minuteCount]: "Minute",
+	[Key.minutesCount]: "Minutes",
+	[Key.postCount]: "Post",
+	[Key.postsCount]: "Posts",
 
 	[Key.themeColor]: "Theme Color",
 
@@ -35,4 +35,9 @@ export const en: Translation = {
 	[Key.author]: "Author",
 	[Key.publishedAt]: "Published at",
 	[Key.license]: "License",
+
+	[Key.pageviews]: "Pageviews",
+	[Key.visitors]: "Visitors",
+
+	[Key.umamiStatsLoadFailed]: "Stats loading failed",
 };

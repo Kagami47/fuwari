@@ -35,4 +35,9 @@ export const ko: Translation = {
 	[Key.author]: "저자",
 	[Key.publishedAt]: "게시일",
 	[Key.license]: "라이선스",
+
+	[Key.pageviews]: "조회수",
+	[Key.visitors]: "방문자",
+
+	[Key.umamiStatsLoadFailed]: "통계를 불러오지 못했습니다",
 };

@@ -17,12 +17,12 @@ export const vi: Translation = {
 	[Key.uncategorized]: "Chưa phân loại",
 	[Key.noTags]: "Chưa có thẻ",
 
-	[Key.wordCount]: "từ",
-	[Key.wordsCount]: "từ",
-	[Key.minuteCount]: "phút đọc",
-	[Key.minutesCount]: "phút đọc",
-	[Key.postCount]: "bài viết",
-	[Key.postsCount]: "bài viết",
+	[Key.wordCount]: "Từ",
+	[Key.wordsCount]: "Từ",
+	[Key.minuteCount]: "Phút đọc",
+	[Key.minutesCount]: "Phút đọc",
+	[Key.postCount]: "Bài viết",
+	[Key.postsCount]: "Bài viết",
 
 	[Key.themeColor]: "Màu giao diện",
 
@@ -35,4 +35,9 @@ export const vi: Translation = {
 	[Key.author]: "Tác giả",
 	[Key.publishedAt]: "Đăng vào lúc",
 	[Key.license]: "Giấy phép bản quyền",
+
+	[Key.pageviews]: "Lượt xem",
+	[Key.visitors]: "Khách truy cập",
+
+	[Key.umamiStatsLoadFailed]: "Lấy thống kê thất bại",
 };

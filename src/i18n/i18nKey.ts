@@ -32,6 +32,11 @@ enum I18nKey {
 	author = "author",
 	publishedAt = "publishedAt",
 	license = "license",
+
+	pageviews = "pageviews",
+	visitors = "visitors",
+
+	umamiStatsLoadFailed = "umamiStatsLoadFailed",
 }
 
 export default I18nKey;

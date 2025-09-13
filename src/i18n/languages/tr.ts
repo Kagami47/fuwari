@@ -17,12 +17,12 @@ export const tr: Translation = {
 	[Key.uncategorized]: "Katagorisiz",
 	[Key.noTags]: "Tag Bulunamadı",
 
-	[Key.wordCount]: "kelime",
-	[Key.wordsCount]: "kelime",
-	[Key.minuteCount]: "dakika",
-	[Key.minutesCount]: "dakika",
-	[Key.postCount]: "gönderi",
-	[Key.postsCount]: "gönderiler",
+	[Key.wordCount]: "Kelime",
+	[Key.wordsCount]: "Kelime",
+	[Key.minuteCount]: "Dakika",
+	[Key.minutesCount]: "Dakika",
+	[Key.postCount]: "Gönderi",
+	[Key.postsCount]: "Gönderiler",
 
 	[Key.themeColor]: "Tema Rengi",
 
@@ -35,4 +35,9 @@ export const tr: Translation = {
 	[Key.author]: "Yazar",
 	[Key.publishedAt]: "Yayınlanma:",
 	[Key.license]: "Lisans",
+
+	[Key.pageviews]: "Görüntülenme",
+	[Key.visitors]: "Ziyaretçi",
+
+	[Key.umamiStatsLoadFailed]: "İstatistikler yüklenemedi",
 };

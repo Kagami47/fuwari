@@ -120,3 +120,12 @@ export type BlogPostData = {
 export type ExpressiveCodeConfig = {
 	theme: string;
 };
+
+/** Umami 分析工具配置 */
+export type UmamiConfig = {
+	enable: boolean /** 是否启用 Umami 分析工具 */;
+	baseUrl: string /** Umami 实例的基础 URL */;
+	shareId: string /** Umami 分享 ID */;
+	timezone: string /** 时区配置 */;
+	showPostStats?: boolean /** 是否显示文章统计 */;
+};

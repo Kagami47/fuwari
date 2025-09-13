@@ -2,10 +2,12 @@
 import type { CollectionEntry } from "astro:content";
 import path from "node:path";
 import { Icon } from "astro-icon/components";
+import { umamiConfig } from "../config";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { getDir } from "../utils/url-utils";
 import ImageWrapper from "./misc/ImageWrapper.astro";
+import UmamiStats from "./misc/UmamiStats.astro";
 import PostMetadata from "./PostMeta.astro";
 
 interface Props {
@@ -64,7 +66,7 @@ const { remarkPluginFrontmatter } = await entry.render();
             { description || remarkPluginFrontmatter.excerpt }
         </div>
 
-        <!-- word count and read time  -->
+        <!-- word count, read time and page views  -->
         <div class="text-sm text-black/30 dark:text-white/30 flex gap-4 transition">
             <div>
                 {remarkPluginFrontmatter.words} {" " + i18n(remarkPluginFrontmatter.words === 1 ? I18nKey.wordCount : I18nKey.wordsCount)}
@@ -73,6 +75,16 @@ const { remarkPluginFrontmatter } = await entry.render();
             <div>
                 {remarkPluginFrontmatter.minutes} {" " + i18n(remarkPluginFrontmatter.minutes === 1 ? I18nKey.minuteCount : I18nKey.minutesCount)}
             </div>
+            <!-- 注意：如果需要修改统计数据的样式，请在src/components/misc/UmamiStats.astro文件中进行修改 -->
+            {umamiConfig.enable && umamiConfig.showPostStats !== false && (
+                <>
+                    <div>|</div>
+                    <div class="post-pageviews-container flex items-center">
+                        <UmamiStats type="post" postUrl={`/posts/${entry.slug}/`} id={`umami-post-pageviews-${entry.slug}`} />
+                        <span id={`umami-pageviews-label-${entry.slug}`} class="ml-1">{i18n(I18nKey.pageviews)}</span>
+                    </div>
+                </>
+            )}
         </div>
 
     </div>
