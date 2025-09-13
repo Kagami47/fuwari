@@ -35,4 +35,9 @@ export const ja: Translation = {
 	[Key.author]: "作者",
 	[Key.publishedAt]: "公開日",
 	[Key.license]: "ライセンス",
+
+	[Key.pageviews]: "ページビュー",
+	[Key.visitors]: "訪問者",
+
+	[Key.umamiStatsLoadFailed]: "統計の読み込みに失敗しました",
 };

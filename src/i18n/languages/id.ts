@@ -17,12 +17,12 @@ export const id: Translation = {
 	[Key.uncategorized]: "Tanpa Kategori",
 	[Key.noTags]: "Tanpa Tag",
 
-	[Key.wordCount]: "kata",
-	[Key.wordsCount]: "kata",
-	[Key.minuteCount]: "menit",
-	[Key.minutesCount]: "menit",
-	[Key.postCount]: "postingan",
-	[Key.postsCount]: "postingan",
+	[Key.wordCount]: "Kata",
+	[Key.wordsCount]: "Kata",
+	[Key.minuteCount]: "Menit",
+	[Key.minutesCount]: "Menit",
+	[Key.postCount]: "Postingan",
+	[Key.postsCount]: "Postingan",
 
 	[Key.themeColor]: "Warna Tema",
 
@@ -35,4 +35,9 @@ export const id: Translation = {
 	[Key.author]: "Penulis",
 	[Key.publishedAt]: "Diterbitkan pada",
 	[Key.license]: "Lisensi",
+
+	[Key.pageviews]: "Pageviews",
+	[Key.visitors]: "Pengunjung",
+	
+	[Key.umamiStatsLoadFailed]: "Statistik gagal dimuat",
 };

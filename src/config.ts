@@ -4,6 +4,7 @@ import type {
 	NavBarConfig,
 	ProfileConfig,
 	SiteConfig,
+	UmamiConfig,
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 
@@ -107,4 +108,13 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	// Note: Some styles (such as background color) are being overridden, see the astro.config.mjs file.
 	// Please select a dark theme, as this blog theme currently only supports dark background color
 	theme: "github-dark",
+};
+
+/** Umami 分析工具配置，用于网站统计和访问量数据展示 */
+export const umamiConfig: UmamiConfig = {
+	enable: true,
+	baseUrl: "https://cloud.umami.is" /** Umami 实例的基础 URL */,
+	shareId: "abcdef1234567890" /** Umami 分享 ID */,
+	timezone: "Asia/Shanghai" /** 时区配置 */,
+	showPostStats: false /** 是否显示文章统计 */,
 };

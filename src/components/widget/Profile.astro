@@ -1,8 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
-import { profileConfig } from "../../config";
+import { profileConfig, umamiConfig } from "../../config";
 import { url } from "../../utils/url-utils";
 import ImageWrapper from "../misc/ImageWrapper.astro";
+
+// 条件导入UmamiStats组件
+let UmamiStats: typeof import("../misc/UmamiStats.astro").default | undefined;
+if (umamiConfig.enable) {
+	UmamiStats = (await import("../misc/UmamiStats.astro")).default;
+}
 
 const config = profileConfig;
 ---
@@ -34,6 +40,9 @@ const config = profileConfig;
                 {config.links[0].name}
             </a>}
         </div>
+        <!-- Umami统计数据 -->
+        <!-- 注意：如果需要修改统计数据的样式，请在src/components/misc/UmamiStats.astro文件中进行修改 -->
+        {umamiConfig.enable && UmamiStats && <UmamiStats class="transition flex flex-col gap-0 text-center -mt-1" />}
     </div>
 </div>
 
