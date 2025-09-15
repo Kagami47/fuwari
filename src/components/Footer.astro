@@ -1,7 +1,27 @@
 ---
-
-import { profileConfig } from "../config";
+import { profileConfig, siteConfig } from "../config";
 import { url } from "../utils/url-utils";
+
+// 定义自定义Footer内容变量，默认为空字符串
+let customFooterContent = "";
+// 如果启用了自定义Footer功能，则尝试加载自定义Footer文件
+if (siteConfig.customFooter.enable) {
+	// 使用Astro推荐的方式加载静态资源文件
+	const footerFiles = import.meta.glob("../CustomFooter.html", {
+		query: "?raw",
+		import: "default",
+		eager: true,
+	});
+	customFooterContent = (footerFiles["../CustomFooter.html"] as string) ?? "";
+	// 移除HTML注释
+	customFooterContent = customFooterContent
+		.replace(/<!--[\s\S]*?-->/g, "")
+		.trim();
+	// 文件读取失败时，保持默认空字符串
+	if (!customFooterContent) {
+		console.warn("警告：无法读取自定义脚部文件，将使用空字符串作为默认值");
+	}
+}
 
 const currentYear = new Date().getFullYear();
 ---
@@ -10,7 +30,12 @@ const currentYear = new Date().getFullYear();
 <div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div>
 <!--<div class="transition bg-[oklch(92%_0.01_var(&#45;&#45;hue))] dark:bg-black rounded-2xl py-8 mt-4 mb-8 flex flex-col items-center justify-center px-6">-->
 <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6">
-    <div class="transition text-50 text-sm text-center">
+<!--<div class="transition bg-[var(--card-bg)] rounded-2xl mb-12 flex flex-col items-center justify-center px-6"></div>-->
+	<div class="transition text-50 text-sm text-center">
+        <!-- 自定义Footer内容 -->
+        {siteConfig.customFooter.enable && (
+            <div class="mb-2" set:html={customFooterContent}></div>
+        )}
         &copy; <span id="copyright-year">{currentYear}</span> {profileConfig.name}. All Rights Reserved. /
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('rss.xml')}>RSS</a> /
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('sitemap-index.xml')}>Sitemap</a><br>

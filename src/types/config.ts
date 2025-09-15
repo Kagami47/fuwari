@@ -56,6 +56,14 @@ export type SiteConfig = {
 			src: string; // 文章图片专用占位符路径，未设置则使用全局占位符
 		};
 	};
+	// 自定义Header内容配置
+	customHeader: {
+		enable: boolean; // 是否启用自定义Header内容
+	};
+	// 自定义Footer内容配置
+	customFooter: {
+		enable: boolean; // 是否启用自定义Footer内容
+	};
 };
 
 export type Favicon = {

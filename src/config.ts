@@ -58,6 +58,14 @@ export const siteConfig: SiteConfig = {
 			src: "/imagePlaceholder/imagePlaceholder.webp", // 文章图片专用占位符，可使用不同的图片
 		},
 	},
+	// 自定义Header内容配置
+	customHeader: {
+		enable: true, // 是否启用自定义Header内容
+	},
+	// 自定义Footer内容配置
+	customFooter: {
+		enable: true, // 是否启用自定义Footer内容
+	},
 };
 
 export const navBarConfig: NavBarConfig = {
