@@ -42,7 +42,7 @@ const config = profileConfig;
         </div>
         <!-- Umami统计数据 -->
         <!-- 注意：如果需要修改统计数据的样式，请在src/components/misc/UmamiStats.astro文件中进行修改 -->
-        {umamiConfig.enable && UmamiStats && <UmamiStats class="transition flex flex-col gap-0 text-center -mt-1" />}
+        {umamiConfig.enable && UmamiStats && <UmamiStats type="site" />}
     </div>
 </div>
 

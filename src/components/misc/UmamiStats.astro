@@ -17,29 +17,34 @@ const { class: className, type = "site", postUrl, id } = Astro.props;
 
 // 仅在客户端渲染此组件
 ---
-
 {umamiConfig.enable && (
   <div class={className || ''}>
+    <style>
+    /* 缓解闪烁 */
+      #umami-pageviews,
+      #umami-visitors {
+        transition: color 0.1s ease-in-out;
+      }
+    </style>
     {type === 'site' && (
       <>
-        <div class="h-px bg-black/10 dark:bg-white/15 w-full my-1"></div>
-        <div id="umami-stats-container" class="flex justify-center gap-6 mt-1">
+        <div id="umami-stats-container" class="flex justify-center gap-6 mt-3">
           <div class="flex flex-col items-center">
-            <div id="umami-pageviews" class="text-base font-bold">--</div>
-            <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">{i18n(I18nKey.pageviews)}</div>
+            <div id="umami-pageviews" class="text-base font-bold dark:text-neutral-50">--</div>
+            <div class="text-xs text-neutral-400">{i18n(I18nKey.pageviews)}</div>
           </div>
           <div class="flex flex-col items-center">
-            <div id="umami-visitors" class="text-base font-bold">--</div>
-            <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">{i18n(I18nKey.visitors)}</div>
+            <div id="umami-visitors" class="text-base font-bold dark:text-neutral-50">--</div>
+            <div class="text-xs text-neutral-400">{i18n(I18nKey.visitors)}</div>
           </div>
         </div>
-        <div id="umami-error-message" class="text-xs font-normal text-center mt-1 hidden">{i18n(I18nKey.umamiStatsLoadFailed)}</div>
+        <div id="umami-error-message" class="text-xs font-normal text-center mt-auto text-neutral-400 hidden">{i18n(I18nKey.umamiStatsLoadFailed)}</div>
       </>
     )}
     {type === 'post' && umamiConfig.showPostStats !== false && (
       <>
         <span id={id || "umami-post-pageviews"} class="post-pageviews">--</span>
-        <span id={`${id || "umami-post-pageviews"}-error`} class="text-xs font-normal text-center ml-1 hidden">{i18n(I18nKey.umamiStatsLoadFailed)}</span>
+        <span id={`${id || "umami-post-pageviews"}-error`} class="text-sm text-center font-thin text-black/30 dark:text-white/30 hidden">{i18n(I18nKey.umamiStatsLoadFailed)}</span>
       </>
     )}
   </div>
