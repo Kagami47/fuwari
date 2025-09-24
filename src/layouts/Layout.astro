@@ -24,17 +24,17 @@ import "katex/dist/katex.css";
 let customHeaderContent = "";
 // 如果启用了自定义Header功能，则尝试加载自定义Header文件
 if (siteConfig.customHeader.enable) {
-  // 使用Astro推荐的方式加载静态资源文件
-  const headFiles = import.meta.glob("../CustomHeader.html", {
-    query: "?raw",
-    import: "default",
-    eager: true,
-  });
-  customHeaderContent = headFiles["../CustomHeader.html"] as string ?? "";
-  // 文件读取失败时，保持默认空字符串
-  if (!customHeaderContent) {
-    console.warn("警告：无法读取自定义Header文件，将使用空字符串作为默认值");
-  }
+	// 使用Astro推荐的方式加载静态资源文件
+	const headFiles = import.meta.glob("../CustomHeader.html", {
+		query: "?raw",
+		import: "default",
+		eager: true,
+	});
+	customHeaderContent = (headFiles["../CustomHeader.html"] as string) ?? "";
+	// 文件读取失败时，保持默认空字符串
+	if (!customHeaderContent) {
+		console.warn("警告：无法读取自定义Header文件，将使用空字符串作为默认值");
+	}
 }
 
 interface Props {
